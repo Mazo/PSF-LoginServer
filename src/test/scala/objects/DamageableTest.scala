@@ -1060,7 +1060,8 @@ class DamageableWeaponTurretDestructionTest extends ActorTest {
       assert(!turret.Destroyed)
 
       turret.Actor ! Vitality.Damage(applyDamageToA) //also test destruction while jammered
-      vehicleProbe.receiveN(2, 500 milliseconds)     //flush jammered messages (see above)
+      var msg = vehicleProbe.receiveN(2, 500 milliseconds)     //flush jammered messages (see above)
+      msg.foreach(x => println(x))
       assert(turret.Health > turret.Definition.DamageDestroysAt)
       assert(turret.Jammed)
       assert(!turret.Destroyed)
