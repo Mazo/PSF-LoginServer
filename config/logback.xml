@@ -87,11 +87,11 @@
 <!--      &lt;!&ndash; i.g.context.jasync.JAsyncContext &ndash;&gt;-->
 <!--      <prefix>io.getquill.context.jasync</prefix>-->
 <!--    </filter>-->
-    <filter class="ch.qos.logback.classic.filter.LevelFilter">
-      <level>DEBUG</level>
-      <onMatch>ACCEPT</onMatch>
-      <onMismatch>DENY</onMismatch>
-    </filter>
+<!--    <filter class="ch.qos.logback.classic.filter.LevelFilter">-->
+<!--      <level>DEBUG</level>-->
+<!--      <onMatch>ACCEPT</onMatch>-->
+<!--      <onMismatch>DENY</onMismatch>-->
+<!--    </filter>-->
     <!-- <filter class="ch.qos.logback.classic.filter.LevelFilter">
       <level>TRACE</level>
       <onMatch>ACCEPT</onMatch>
