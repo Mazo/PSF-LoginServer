@@ -45,10 +45,10 @@
       -->
       <prefix>io.sentry.connection</prefix>
     </filter>
-<!--    <filter class="net.psforever.filters.LoggerPrefixFilter">-->
-<!--      &lt;!&ndash; damage log &ndash;&gt;-->
-<!--      <prefix>DamageResolution</prefix>-->
-<!--    </filter>-->
+    <filter class="net.psforever.filters.LoggerPrefixFilter">
+      <!-- damage log -->
+      <prefix>DamageResolution</prefix>
+    </filter>
 <!--    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
 <!--      <level>INFO</level>-->
 <!--    </filter>-->
