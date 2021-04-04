@@ -38,13 +38,13 @@
       -->
       <prefix>com.github.jasync.sql.db.postgresql.codec</prefix>
     </filter>
-<!--    <filter class="net.psforever.filters.LoggerPrefixFilter">-->
-<!--      &lt;!&ndash;-->
-<!--       i.s.c.AbstractConnection.lockdown-->
-<!--       i.sentry.connection.AsyncConnection-->
-<!--      &ndash;&gt;-->
-<!--      <prefix>io.sentry.connection</prefix>-->
-<!--    </filter>-->
+    <filter class="net.psforever.filters.LoggerPrefixFilter">
+      <!--
+       i.s.c.AbstractConnection.lockdown
+       i.sentry.connection.AsyncConnection
+      -->
+      <prefix>io.sentry.connection</prefix>
+    </filter>
 <!--    <filter class="net.psforever.filters.LoggerPrefixFilter">-->
 <!--      &lt;!&ndash; damage log &ndash;&gt;-->
 <!--      <prefix>DamageResolution</prefix>-->
