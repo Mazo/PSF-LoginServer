@@ -10,8 +10,29 @@
     </filter>
   </appender>
 
+  <appender name="Sentry" class="io.sentry.logback.SentryAppender">
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>WARN</level>
+    </filter>
+    <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+      <evaluator>
+        <matcher>
+          <Name>encrypted</Name>
+          <!-- occurs during logging or relogging complications; the messages are useless -->
+          <regex>Unexpected packet type EncryptedPacket</regex>
+        </matcher>
+        <expression>encrypted.matches(formattedMessage)</expression>
+      </evaluator>
+      <OnMatch>DENY</OnMatch>
+      <OnMismatch>NEUTRAL</OnMismatch>
+    </filter>
+  </appender>
+
   <root level="TRACE">
     <appender-ref ref="STDOUT"/>
+    <appender-ref ref="Sentry"/>
   </root>
 
+  <!-- Logger specific overrides -->
+  <logger name="oshi" level="OFF"/>
 </configuration>
