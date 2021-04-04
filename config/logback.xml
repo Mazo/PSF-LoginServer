@@ -59,14 +59,14 @@
 
   <appender name="FILE-DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <file>logs/psforever-debug_${bySecond}.log</file>
-    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-      <fileNamePattern>logs/psforever-debug_%d{yyyy-MM-dd}.gz</fileNamePattern>
-      <maxHistory>60</maxHistory>
-      <totalSizeCap>10GB</totalSizeCap>
-    </rollingPolicy>
-    <encoder>
-      <pattern>%date{ISO8601} [%thread] %5level "%X" %logger{35} - %msg%n</pattern>
-    </encoder>
+<!--    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+<!--      <fileNamePattern>logs/psforever-debug_%d{yyyy-MM-dd}.gz</fileNamePattern>-->
+<!--      <maxHistory>60</maxHistory>-->
+<!--      <totalSizeCap>10GB</totalSizeCap>-->
+<!--    </rollingPolicy>-->
+<!--    <encoder>-->
+<!--      <pattern>%date{ISO8601} [%thread] %5level "%X" %logger{35} - %msg%n</pattern>-->
+<!--    </encoder>-->
 <!--    <filter class="net.psforever.filters.LoggerPrefixFilter">-->
 <!--      &lt;!&ndash;-->
 <!--       c.g.j.s.d.p.e.CloseStatementEncoder-->
