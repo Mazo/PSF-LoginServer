@@ -32,12 +32,12 @@
       <OnMatch>DENY</OnMatch>
       <OnMismatch>NEUTRAL</OnMismatch>
     </filter>
-<!--    <filter class="net.psforever.filters.LoggerPrefixFilter">-->
-<!--      &lt;!&ndash;-->
-<!--       c.g.j.s.d.p.c.PostgreSQLConnectionHandler-->
-<!--      &ndash;&gt;-->
-<!--      <prefix>com.github.jasync.sql.db.postgresql.codec</prefix>-->
-<!--    </filter>-->
+    <filter class="net.psforever.filters.LoggerPrefixFilter">
+      <!--
+       c.g.j.s.d.p.c.PostgreSQLConnectionHandler
+      -->
+      <prefix>com.github.jasync.sql.db.postgresql.codec</prefix>
+    </filter>
 <!--    <filter class="net.psforever.filters.LoggerPrefixFilter">-->
 <!--      &lt;!&ndash;-->
 <!--       i.s.c.AbstractConnection.lockdown-->
