@@ -119,8 +119,8 @@
 
   <root level="TRACE">
     <appender-ref ref="STDOUT"/>
-    <appender-ref ref="FILE-GENERAL"/>
-    <appender-ref ref="FILE-DEBUG"/>
+<!--    <appender-ref ref="FILE-GENERAL"/>-->
+<!--    <appender-ref ref="FILE-DEBUG"/>-->
 <!--    <appender-ref ref="Sentry"/>-->
   </root>
 
