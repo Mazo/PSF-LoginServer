@@ -52,9 +52,9 @@
     <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
       <level>INFO</level>
     </filter>
-<!--    <filter class="net.psforever.filters.ApplyCooldownToDuplicateLoggingFilter">-->
-<!--      <cooldown>5000</cooldown>-->
-<!--    </filter>-->
+    <filter class="net.psforever.filters.ApplyCooldownToDuplicateLoggingFilter">
+      <cooldown>5000</cooldown>
+    </filter>
   </appender>
 
   <root level="TRACE">
