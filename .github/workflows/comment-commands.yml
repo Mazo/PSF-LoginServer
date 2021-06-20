@@ -12,7 +12,7 @@ jobs:
         with:
           token: ${{ secrets.SLASH_COMMANDS_PAT }}
           issue-type: pull-request
-          dispatch-type: workflow
+          dispatch-type: repository
           permission: write
           commands: |
             test-server
