@@ -2,6 +2,9 @@ name: Publish PR Docker Image
 on:
   workflow_dispatch:
     inputs:
+      ref:
+        description: 'Git ref to the triggering action'
+        required: true
       repository:
         description: 'The repository from which the slash command was dispatched'
         required: true
