@@ -10,32 +10,32 @@ jobs:
         env:
           PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
         run: echo "$PAYLOAD_CONTEXT"
-      # - name: Set up Docker Buildx
-      #   uses: docker/setup-buildx-action@v1
-      # - name: Set variables
-      #   id: prep
-      #   run: |
-      #     DOCKER_IMAGE=test-server
-      #     REPOSITORY="$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')" # Repository name must be lowercase in image tags
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Set variables
+        id: prep
+        run: |
+          DOCKER_IMAGE=test-server
+          REPOSITORY="$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')" # Repository name must be lowercase in image tags
 
-      #     if [ "$GITHUB_EVENT_NAME" == "pull_request" ]; then
-      #         GITHUB_SHA=$(cat $GITHUB_EVENT_PATH | jq -r .pull_request.head.sha) # GITHUB_SHA is the merge SHA, not the head commit SHA in a PR, replace it.
-      #     fi
+          if [ "$GITHUB_EVENT_NAME" == "issue_comment" ] && [ $(cat $GITHUB_EVENT_PATH | jq -r .payload.comment.body) == "/test-server" ]; then
+              GITHUB_SHA=$(cat $GITHUB_EVENT_PATH | jq -r .pull_request.head.sha) # GITHUB_SHA is the merge SHA, not the head commit SHA in a PR; replace it.
+          fi
 
-      #     TAGS="ghcr.io/${REPOSITORY}/${DOCKER_IMAGE}:${GITHUB_SHA}"
-      #     if [ "${{ github.ref }}" = "refs/heads/master" ]; then
-      #       TAGS="$TAGS,ghcr.io/${REPOSITORY}/${DOCKER_IMAGE}:latest,ghcr.io/${REPOSITORY}/${DOCKER_IMAGE}:master"
-      #     fi
+          TAGS="ghcr.io/${REPOSITORY}/${DOCKER_IMAGE}:${GITHUB_SHA}"
+          if [ "${{ github.ref }}" = "refs/heads/master" ]; then
+            TAGS="$TAGS,ghcr.io/${REPOSITORY}/${DOCKER_IMAGE}:latest,ghcr.io/${REPOSITORY}/${DOCKER_IMAGE}:master"
+          fi
 
-      #     echo ::set-output name=tags::${TAGS}
-      # - name: Log in to GitHub Docker Registry
-      #   uses: docker/login-action@v1
-      #   with:
-      #     registry: ghcr.io
-      #     username: ${{ github.repository_owner }}
-      #     password: ${{ secrets.GITHUB_TOKEN }}
-      # - name: Build container image
-      #   uses: docker/build-push-action@v2
-      #   with:
-      #     push: true
-      #     tags: ${{ steps.prep.outputs.tags }}
+          echo ::set-output name=tags::${TAGS}
+      - name: Log in to GitHub Docker Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build container image
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ${{ steps.prep.outputs.tags }}
