@@ -17,15 +17,8 @@ jobs:
         run: |
           DOCKER_IMAGE=test-server
           REPOSITORY="$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')" # Repository name must be lowercase in image tags
-
-          if [ "$GITHUB_EVENT_NAME" == "issue_comment" ] && [ $(cat $GITHUB_EVENT_PATH | jq -r .payload.comment.body) == "/test-server" ]; then
-              GITHUB_SHA=$(cat $GITHUB_EVENT_PATH | jq -r .pull_request.head.sha) # GITHUB_SHA is the merge SHA, not the head commit SHA in a PR; replace it.
-          fi
-
+          GITHUB_SHA=$(cat $GITHUB_EVENT_PATH | jq -r .pull_request.head.sha) # GITHUB_SHA is the merge SHA, not the head commit SHA in a PR; replace it.
           TAGS="ghcr.io/${REPOSITORY}/${DOCKER_IMAGE}:${GITHUB_SHA}"
-          if [ "${{ github.ref }}" = "refs/heads/master" ]; then
-            TAGS="$TAGS,ghcr.io/${REPOSITORY}/${DOCKER_IMAGE}:latest,ghcr.io/${REPOSITORY}/${DOCKER_IMAGE}:master"
-          fi
 
           echo ::set-output name=tags::${TAGS}
       - name: Log in to GitHub Docker Registry
@@ -38,4 +31,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ steps.prep.outputs.tags }}
+          tags: ${{ steps.prep.outputs.tags }} #
